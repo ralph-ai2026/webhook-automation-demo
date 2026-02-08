@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Automation Webhook Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+    }
+    .card {
+      max-width: 520px;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    p {
+      color: #555;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
+      font-size: 14px;
+    }
+    button {
+      background: #111;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>AI Automation Workflow Demo</h1>
+    <p>
+      Submit this form to trigger a real-time webhook and AI-powered automation workflow.
+    </p>
+
+    <form method="POST" action="https://hooks.zapier.com/hooks/catch/26297004/ue4t2c7/">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <input type="text" name="company" placeholder="Company / Project" />
+      <textarea name="message" placeholder="What are you trying to automate?" rows="4"></textarea>
+
+      <!-- hidden portfolio marker -->
+      <input type="hidden" name="source" value="github_pages_webhook_demo" />
+
+      <button type="submit">Run Automation Demo</button>
+    </form>
+
+    <p style="font-size:12px; margin-top:12px;">
+      ⏱️ Automation executes in under 30 seconds
+    </p>
+  </div>
+
+</body>
+</html>
