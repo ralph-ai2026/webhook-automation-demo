@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posh Deals Pasabuy Request</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>🛍️ Posh Deals Pasabuy</h1>
+    <p>Request items from Thailand & Japan</p>
+
+    <form id="pasabuyForm">
+      <label>Name</label>
+      <input type="text" name="name" required />
+
+      <label>Email</label>
+      <input type="email" name="email" required />
+
+      <label>Phone</label>
+      <input type="tel" name="phone" required />
+
+      <label>Country</label>
+      <select name="country" required>
+        <option value="">Select country</option>
+        <option value="Philippines">Philippines</option>
+        <option value="Thailand">Thailand</option>
+        <option value="Japan">Japan</option>
+      </select>
+
+      <label>Product Link</label>
+      <input type="url" name="product_link" placeholder="https://..." required />
+
+      <label>Product Name</label>
+      <input type="text" name="product_name" required />
+
+      <label>Quantity</label>
+      <input type="number" name="quantity" min="1" required />
+
+      <label>Message</label>
+      <textarea name="message" rows="4" placeholder="Color, size, notes..."></textarea>
+
+      <button type="submit">Submit Pasabuy Request</button>
+    </form>
+
+    <p id="successMsg" class="hidden">✅ Request sent! We’ll contact you soon.</p>
+  </div>
+
+<script>
+  const form = document.getElementById("pasabuyForm");
+  const successMsg = document.getElementById("successMsg");
+
+  const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/26297004/uetvypz/";
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const payload = {};
+    formData.forEach((value, key) => {
+      payload[key] = value;
+    });
+
+    try {
+      const response = await fetch(ZAPIER_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        successMsg.classList.remove("hidden");
+        form.reset();
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Error sending request.");
+      console.error(error);
+    }
+  });
+</script>
+
+
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 500px;
+  background: white;
+  padding: 30px;
+  margin: 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+p {
+  text-align: center;
+  color: #666;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #333;
+}
+
+.hidden {
+  display: none;
+}
+
+#successMsg {
+  margin-top: 20px;
+  color: green;
+  text-align: center;
+  font-weight: bold;
+}
