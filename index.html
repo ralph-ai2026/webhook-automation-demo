@@ -75,3 +75,79 @@ button:hover {
 }
 </style>
 </head>
+<body>
+
+<div class="container">
+    <h1>Let's Work Together</h1>
+    <p>Fill out the form and we’ll contact you shortly.</p>
+
+    <form id="contactForm">
+
+        <label>Full Name *</label>
+        <input type="text" name="full_name" required>
+
+        <label>Email *</label>
+        <input type="email" name="email" required>
+
+        <label>Phone *</label>
+        <input type="tel" name="phone" required>
+
+        <label>Service *</label>
+        <select name="service" required>
+            <option value="">Select Service</option>
+            <option>Web Development</option>
+            <option>AI Automation</option>
+            <option>CRM Setup</option>
+            <option>Consultation</option>
+        </select>
+
+        <label>Budget *</label>
+        <select name="budget" required>
+            <option value="">Select Budget</option>
+            <option>$500 - $1,000</option>
+            <option>$1,000 - $3,000</option>
+            <option>$3,000 - $5,000</option>
+            <option>$5,000+</option>
+        </select>
+
+        <label>How did you find us? *</label>
+        <select name="source" required>
+            <option value="">Select Source</option>
+            <option>Facebook</option>
+            <option>Google</option>
+            <option>Referral</option>
+            <option>Email</option>
+            <option>Other</option>
+        </select>
+
+        <label>Message *</label>
+        <textarea name="message" required></textarea>
+
+        <button type="submit">Submit Inquiry</button>
+
+    </form>
+</div>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    try {
+        await fetch("https://hooks.zapier.com/hooks/catch/26297004/uexx4tc/", {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+        });
+
+        window.location.href = "thank-you.html";
+
+    } catch (error) {
+        alert("Submission failed. Please try again.");
+    }
+});
+</script>
+
+</body>
+</html>
