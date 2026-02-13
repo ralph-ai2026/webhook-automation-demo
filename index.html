@@ -1,82 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Posh Deals Pasabuy Request</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Inquiry | Your Business Name</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        color: #333;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #666;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 6px;
+        background-color: #0077ff;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #005fd1;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 12px;
+        color: #999;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            margin: 20px;
+        }
+    }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>🛍️ Posh Deals Pasabuy</h1>
-    <p>Request items from Thailand & Japan</p>
+<div class="container">
+    <h1>Let's Work Together</h1>
+    <p>Fill out the form below and we’ll get back to you shortly.</p>
 
-    <form id="pasabuyForm">
-      <label>Name</label>
-      <input type="text" name="name" required />
+    <form action="https://hooks.zapier.com/hooks/catch/26297004/uexx4tc/" method="POST">
 
-      <label>Email</label>
-      <input type="email" name="email" required />
+        <label for="full_name">Full Name *</label>
+        <input type="text" name="full_name" required>
 
-      <label>Phone</label>
-      <input type="tel" name="phone" required />
+        <label for="email">Email *</label>
+        <input type="email" name="email" required>
 
-      <label>Country</label>
-      <select name="country" required>
-        <option value="">Select country</option>
-        <option value="Philippines">Philippines</option>
-        <option value="Thailand">Thailand</option>
-        <option value="Japan">Japan</option>
-      </select>
+        <label for="phone">Phone *</label>
+        <input type="tel" name="phone" required>
 
-      <label>Product Link</label>
-      <input type="url" name="product_link" placeholder="https://..." required />
+        <label for="service">Service *</label>
+        <select name="service" required>
+            <option value="">Select a Service</option>
+            <option value="Web Development">Web Development</option>
+            <option value="AI Automation">AI Automation</option>
+            <option value="CRM Setup">CRM Setup</option>
+            <option value="Consultation">Consultation</option>
+        </select>
 
-      <label>Product Name</label>
-      <input type="text" name="product_name" required />
+        <label for="budget">Budget *</label>
+        <select name="budget" required>
+            <option value="">Select Budget Range</option>
+            <option value="$500 - $1,000">$500 - $1,000</option>
+            <option value="$1,000 - $3,000">$1,000 - $3,000</option>
+            <option value="$3,000 - $5,000">$3,000 - $5,000</option>
+            <option value="$5,000+">$5,000+</option>
+        </select>
 
-      <label>Quantity</label>
-      <input type="number" name="quantity" min="1" required />
+        <label for="source">How did you find us? *</label>
+        <select name="source" required>
+            <option value="">Select Source</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Google">Google</option>
+            <option value="Referral">Referral</option>
+            <option value="Email">Email</option>
+            <option value="Other">Other</option>
+        </select>
 
-      <label>Message</label>
-      <textarea name="message" rows="4" placeholder="Color, size, notes..."></textarea>
+        <label for="message">Message *</label>
+        <textarea name="message" required></textarea>
 
-      <button type="submit">Submit Pasabuy Request</button>
+        <button type="submit">Submit Inquiry</button>
     </form>
 
-    <p id="successMsg" class="hidden">✅ Request sent! We’ll contact you soon.</p>
-  </div>
-
-<script>
-  const form = document.getElementById("pasabuyForm");
-  const successMsg = document.getElementById("successMsg");
-
-  const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/26297004/uexx4tc/";
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    fetch(ZAPIER_WEBHOOK_URL, {
-      method: "POST",
-      body: formData
-      // ❌ DO NOT add headers
-      // ❌ DO NOT use JSON
-    })
-    .then(() => {
-      successMsg.classList.remove("hidden");
-      form.reset();
-    })
-    .catch((error) => {
-      alert("Error sending request");
-      console.error(error);
-    });
-  });
-</script>
-
+    <div class="footer">
+        © 2026 Your Business Name. All rights reserved.
+    </div>
+</div>
 
 </body>
 </html>
-
